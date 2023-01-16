@@ -1,5 +1,6 @@
 const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   //モードをdevelopment、production、noneから設定(必須)
@@ -12,7 +13,7 @@ module.exports = {
   //ファイルの出力設定
   output: {
     //出力先のディレクトリ（絶対パスで指定）
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "dist"),
     //出力ファイル名
     filename: "bundle.js",
   },
@@ -37,5 +38,8 @@ module.exports = {
   plugins: [
     //Vueを読み込むために必要
     new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      template: "public/index.html",
+    })
   ],
 };
